@@ -28,39 +28,45 @@ def criarDictLetrasNum():
 
 class Tabuleiro:
 	"""Classe que representa as características do tabuleiro do jogo Batalha Naval.
-		*Construtor:
+		*Atributos:
+			-tabMatriz: Matriz numérica que representa o jogo em si, a qual tem os seguintes índices:
+						+0 -> Vazio; 
+						+1 -> Já atacado; 
+						+2 -> Ocupada por algum navio;
+						+3 -> Posição de navio atingido.
+			-listaJaAtingidas: Lista de posições já escolhidas para àquele tabuleiro.
+								Serve para acelerar o processo de verificação das casas já atingidas (além do histórico dos tiros).
 			
-
-	OBS: Deixei os métodos deleters por questão de padrão. Podem ser retirados"""
+		OBS: Deixei os métodos deleters por questão de padrão. Podem ser retirados."""
 
 	LETRAS_POSX = criarDictLetrasNum()
 
 	def __init__(self):
-		self.__tabMatriz = np.zeros([TAM_PADRAO,TAM_PADRAO]).astype(int) #0 -> vazio; 1 -> atingido; 2 -> ocupada por algum navio
-		self.__listaJaAtingidas = [] #Acelerar o processo de verificação das casas já atingidas(além do histórico dos tiros)
-		#Método sort para ordenar em ordem alfabética as posições.
-
-	#OBS: Deixei os métodos deleters por questão de padrão. Podem ser retirados.
+		self.__tabMatriz = np.zeros([TAM_PADRAO,TAM_PADRAO]).astype(int) 
+		self.__listaJaAtingidas = []
 
 	@property
 	def tabMatriz(self):
-		"""Propriedade de tabMatriz"""
+		"""Propriedade ('get') de tabMatriz"""
 		return self.__tabMatriz
 
 	@tabMatriz.deleter
 	def tabMatriz(self):
+		"""'deleter' de tabMatriz"""
 		del self.__tabMatriz
 
 	@property
 	def listaJaAtingidas(self):
-		"""Propriedade de listaJaAtingidas"""
+		"""Propriedade ('get') de listaJaAtingidas"""
 		return self.__listaJaAtingidas
 
 	@listaJaAtingidas.deleter
 	def listaJaAtingidas(self):
+		"""'deleter' de listaJaAtingidas"""
 		del self.__listaJaAtingidas
 
 	def imprimirSeuTabuleiro(self):
+		"""Método que imprimi o estado do tabuleiro do jogador referente."""
 		posx = 0
 		posy = 0
 		c = 0
@@ -88,16 +94,17 @@ class Tabuleiro:
 
 				posy = 0
 
-			#print(0, end=" ")
 			print(self.__tabMatriz[posx,posy], end=" ")
 			c += 1
 			posy += 1
 
-		#print()
 		print("\n")
 		print("Legenda:","\n","0 -> Disponível","\n","1 -> Atingido","\n", "2 -> Posição dos navios","\n","3 -> Navio atingido")
 
 	def adicionarPosicaoJaEscolhida(self,pos):
+		"""Método que adiciona a posição já escolhida no tabuleiro para 'listaJaAtingidas'.
+			*Parâmetros:
+				-pos: String da posição a ser adicionada no atributo 'listaJaAtingidas'. """
 		self.__listaJaAtingidas.append(pos.upper())
 		self.__listaJaAtingidas.sort()
 

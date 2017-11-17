@@ -1,11 +1,15 @@
 from random import randint
 from Jogador import *
 
+#Constante das mensagens que o observador vai enviar para o servidor rodar corretamente o método 'estadoJogo()'.
 MSG_JOG1 = "Jog1"
 MSG_JOG2 = "Jog2"
 
 class Jogo:
-	"""Informações sobre o jogo.
+	"""Classe que contém a lógica de funcionamento do jogo Batalha Naval e que utiliza todas as outras classes existentes no projeto.
+		*Atributos:
+			-j1: Referente ao objeto "Jogador".
+			-j2: Referente ao objeto "Jogador".
 	OBS: Deixei os métodos deleters por questão de padrão. Podem ser retirados."""
 	def __init__(self):
 
@@ -14,23 +18,26 @@ class Jogo:
 
 	@property
 	def j1(self):
-		"""Propriedade de j1"""
+		"""Propriedade ('get') de j1"""
 		return self.__j1
 
 	@j1.deleter
 	def j1(self):
+		""" 'deleter' de j1."""
 		del self.__j1
 
 	@property
 	def j2(self):
-		"""Propriedade de j2"""
+		"""Propriedade ('get') de j2"""
 		return self.__j2
 
 	@j2.deleter
 	def j2(self):
+		""" 'deleter' de j2."""
 		del self.__j2
 
 	def selecaoJogadorMaquinaTiro(self):
+		"""Método que gera uma posição aleatória no tabuleiro para simular um jogador máquina."""
 		LETRAS_TABULEIRO = s.ascii_uppercase[0:TAM_PADRAO]
 
 		letra = LETRAS_TABULEIRO[randint(0,TAM_PADRAO-1)]
@@ -41,7 +48,10 @@ class Jogo:
 		return tiro
 
 	def imprimirListaNavios(self,dict_aux):
-    
+		"""Método que imprimi a lista de Navios disponíveis no jogo e sua quantidade. Usado no momento da seleção dos posicionamentos dos navios por um jogador.
+    		*Parâmetros:
+    			-dict_aux: Dicionário auxiliar que contém todas as informações sobre cada tipo de navio. A quantidade de cada chave
+    			é subtraída a cada inserção deste navio no tabuleiro, motivo este de dict_aux existir."""
 		print("Navios Disponíveis:\n")
 
 		for i in LISTA_CHAVES:
@@ -50,7 +60,7 @@ class Jogo:
 		print()
 
 	def criarDictNavioValor(self):
-
+		"""Método que cria um dicionário auxiliar tal que (chave_navio:qtd_navio)."""
 		dict_aux = {}
 
 		for c,v in Navio.NAVIOS_DISPONIVEIS.items(): 
@@ -58,13 +68,15 @@ class Jogo:
 
 		return dict_aux
 
-	def resetarDictNavioValor(self, dict_aux):
 
-		for c,v in Navio.NAVIOS_DISPONIVEIS.items(): 
-			dict_aux[c] = v[0]
+	def selecionarNavio(self,chaveNavio,dict_aux): #Cada jogador deve chamar esse método a cada navio
+		"""Método que cria o navio escolhido pelo jogador.
+			*Parâmtros:
+				-chaveNavio: String chave do navio, que foi selecionada pelo jogador previamente;
+				-dict_aux: Dicionário auxiliar que contém todas as informações sobre cada tipo de navio. A quantidade de cada chave
+    			é subtraída a cada inserção deste navio no tabuleiro, motivo este de dict_aux existir.
 
-
-	def selecionarNavio(self,chaveNavio,dict_aux): #Cada jogador deve chamar esse método a cada navio 
+    		*Retorno: (Navio,boolean) -> 1) Objeto do tipo Navio, se a chave é válida; 2) Operação sucedida ou não.""" 
 
 		if not chaveNavio in Navio.NAVIOS_DISPONIVEIS.keys() or dict_aux[chaveNavio] == 0:
 			return (None,False)
@@ -74,6 +86,9 @@ class Jogo:
 		return (novo_navio,True)
 
 	def escolherNavio(self,j1Vez):
+		"""Método que representa a parte do jogo em que os jogador posiciona seus navios no tabuleiro.
+			*Parâmetros:
+				-j1Vez: Se é a vez do jogador 1 ou não."""
 		jFluxo = True
 		validezInput = False
 		validezInputPos = False
@@ -144,6 +159,9 @@ class Jogo:
 				jFluxo = False
 
 	def escolherNavioJogTeste(self,jog1 = False):
+		"""Método de escolha de navios pré-definidos, unicamente para realização de testes.
+			*Parâmetros:
+				-jog1 = False (parâmetro opcional): Gerar ou não o tabuleiro teste para o jogador 1."""
 		
 		dict_aux = self.criarDictNavioValor()
 
@@ -265,7 +283,7 @@ class Jogo:
 
 
 	def jogadaJogador1(self):
-		#...
+		"""Método que representa a lógica do fluxo da jogada do jogador 1."""
 		j1Fluxo = True
 
 		while j1Fluxo:
@@ -297,7 +315,7 @@ class Jogo:
 							return True
 							#break
 
-					print("Tiro Jogador 1: ", posTiro)
+					print("Tiro Jogador 1: ", posTiro.upper())
 					continue		
 			else:
 				print("POSIÇÃO INVÁLIDA. POR FAVOR, SELECIONE OUTRA\n")
@@ -311,7 +329,9 @@ class Jogo:
 
 
 	def jogadaJogador2(self,jogadorMaquina = False):
-		#...
+		"""Método que representa a lógica do fluxo da jogada do jogador 2.
+			*Parâmetros:
+				-jogadorMaquina = False(parâmetro opcional): Se é ou não um jogador máquina."""
 		j2Fluxo = True
 
 		if jogadorMaquina:
@@ -327,7 +347,7 @@ class Jogo:
 						continue
 
 					if opSuccs and acertouNav and not navAbatido:
-						print("Tiro Jogador 2: ", posTiro)
+						print("Tiro Jogador 2: ", posTiro.upper())
 						continue
 
 					if opSuccs and acertouNav and navAbatido:
@@ -340,12 +360,12 @@ class Jogo:
 								return True
 								#break
 
-						print("Tiro j2: ", posTiro)
+						print("Tiro j2: ", posTiro.upper())
 						continue	
 				else:
 					continue
 
-				print("Tiro Jogador 2: ", posTiro)
+				print("Tiro Jogador 2: ", posTiro.upper())
 				j2Fluxo = False
 		else:
 			while j2Fluxo:
@@ -365,7 +385,7 @@ class Jogo:
 
 					if opSuccs and acertouNav and not navAbatido:
 						print("NAVIO ATINGINDO! POR FAVOR, JOGUE NOVAMENTE!")
-						print("Tiro Jogador 2: ", posTiro)
+						print("Tiro Jogador 2: ", posTiro.upper())
 						continue
 
 					if opSuccs and acertouNav and navAbatido:
@@ -379,23 +399,25 @@ class Jogo:
 								return True
 								#break
 
-						print("Tiro j2: ", posTiro)
+						print("Tiro j2: ", posTiro.upper())
 						continue	
 				else:
 					print("POSIÇÃO INVÁLIDA. POR FAVOR, SELECIONE OUTRA\n")
 					continue
 
-				print("Tiro Jogador 2: ", posTiro)
+				print("Tiro Jogador 2: ", posTiro.upper())
 				j2Fluxo = False
 
 
 		print("JOGADA DO JOGADOR 2 EFETUADA!\n")
 		return False
 
-    #msgJog: Uma string que será enviada do cliente jogador até o server para identificar qual estado enviar.
-    #msgs: "Jog1" ou "Jog2"
-    #visJogador: Se o método é solicitado para executar em um server Observador ou não.
 	def estadoJogo(self,msgJog,visJogador=True):
+		"""Método que imprimi na tela a situação do jogo (tabuleiros do jogador 1 e 2).
+			*Parâmetros:
+				-msgJog: String de identificação de jogador. Strings definidas pelas variáveis globais 'MSG_JOG1' e 'MSG_JOG2'. 
+						Será enviada do cliente jogador até o server para identificar qual estado enviar. 
+				-visJogador = True (parâmetro opcional): Boolean que diz se o método será executado em um Servidor (True) ou Observador (False)."""
 		posx = 0
 		posy1 = 0
 		posy2 = 0
@@ -484,9 +506,13 @@ class Jogo:
 
 
 	def verificarValidezPosicao(self,input):
+		"""Método que verifica se a posição considerada existe no tabuleiro ou não.
+			*Parâmetros:
+				-input: String que representa a posição no tabuleiro recebida.
 
+			*Retorno: boolean -> 'True' se é aceita ou 'False' se é rejeitada."""
 		if len(input) > 0:
-			if input[0].upper() in LETRAS_TABULEIRO: #s.ascii_letters: #Começa com letra
+			if input[0].upper() in LETRAS_TABULEIRO: #Começa com letra e é dentro do range do tabuleiro.
 
 				if input[1:].isdigit() and (int(input[1:]) >= 1 and int(input[1:]) <= TAM_PADRAO):
 					return True
@@ -497,7 +523,11 @@ class Jogo:
 
 
 	def verificarValidezInputPosicaoNavio(self,pos): #pos -> string
+		"""Método que verifica se a posição do navio que o jogador inseriu é válida ou não.
+			*Parâmetros:
+				-pos: String da posição do navio. EX: A1-A3, D4-G4.
 
+			*Retorno: boolean -> 'True' se a posição é válida ou 'False' se é inválida."""
 		delimiter = pos.find('-')
 
 		if delimiter >= 2 and len(pos) >= 5: #5 é o tamanho mínimo da string válida.
@@ -515,11 +545,16 @@ class Jogo:
 			return False
 
 	def apresentacao(self):
+		"""Método que imprimi as informações de apresentação do jogo."""
 		print("====================================================")
 		print("BEM-VINDO AO JOGO BATALHA NAVAL!\n\nINFORMACOES DO JOGO:\n\nTAMANHO TABULEIRO:",str(TAM_PADRAO) + "x" + str(TAM_PADRAO),"\nLETRAS: " + LETRAS_TABULEIRO[0] + "-" + LETRAS_TABULEIRO[TAM_PADRAO-1] + " --> Linhas" +"\nNUMEROS: 1-" + str(TAM_PADRAO) + " --> Colunas")
 		print("====================================================\n\n")
 
 	def fimJogo(self):
+		"""Método que verifica se um jogo terminou ou não.
+			*Retorno: (boolean,boolean,boolean) -> 1) Se terminou ou não;
+													2) Se o jogador 1 venceu ou não;
+													3) Se o jogador 2 venceu ou não."""
 		if len(self.__j1.navios) == 0:
 			return (True,False,True)
 

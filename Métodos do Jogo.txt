@@ -1,0 +1,47 @@
+#-----------------------------------Jogo Batalha Naval-----------------------------------
+
+#Os tipos de navios são: Porta-Aviões (cinco quadrados), Navios-Tanque (quatro quadrados), 
+#Contra-Torpedos (três quadrados) e Submarinos (dois quadrados). 
+#Os quadrados que compõem um navio devem estar conectados e em fila reta. 
+#Numa das variações deste jogo, as grelhas são de dimensão 10x10, e o número de navios são: 
+#Porta-Avião: 1;Navio-Tanque 2;Contra-Torpedo: 3 e Submarino: 4.
+
+Classe Jogo:
+
+	def selecaoJogadorMaquinaTiro(self):
+	#def selecaoJogadorMaquinaNavio(self,navio): #FUTURA IMPLEMENTAÇÃO!
+	def imprimirListaNavios(self,dict_aux):
+	def criarDictNavioValor(self):
+	def selecionarNavio(self,chaveNavio,dict_aux): 
+	def escolherNavio(self,j1Vez):
+	def escolherNavioJogTeste(self,jog1 = False): #MÉTODO PARA TESTES, APENAS!
+	def jogadaJogador1(self):
+	def jogadaJogador2(self,jogadorMaquina = False):
+	def estadoJogo(self,msgJog,visJogador=True):
+	def verificarValidezPosicao(self,input):
+	def verificarValidezInputPosicaoNavio(self,pos):
+	def apresentacao(self):
+	def fimJogo(self):
+
+Classe Jogador:
+
+	def incluirNavio(self,navio):
+	def removerNavio(self,idx):
+	def limparPreenchimentoPrevio(self,list_aux):
+	def posicionarNavio(self,pos,navio):
+	def atacarOponente(self,jogador,pos):
+
+Classe Navio:
+
+    def adicionarPosicao(self,pos):
+    def removerPosicao(self,pos):
+    def limparListaPosicoes(self):
+
+Classe NavioFactory:
+
+	def criarNavio(self,chaveNavio):
+
+Classe Tabuleiro:
+
+	def imprimirSeuTabuleiro(self):
+	def adicionarPosicaoJaEscolhida(self,pos):

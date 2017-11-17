@@ -118,7 +118,7 @@ class Navio:
         self.__listaPosicoes.clear()
 
 class PortaAviao(Navio):
-	"""Classe filha de 'Navio' que representa o Porta Avião."""
+    """Classe filha de 'Navio' que representa o Porta Avião."""
     def __init__(self):
         super(PortaAviao, self).__init__(CASAS_PORTA_AVIAO)
 
