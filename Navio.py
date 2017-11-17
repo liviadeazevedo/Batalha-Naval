@@ -140,9 +140,6 @@ class Submarino(Navio):
 class NavioFactory(object):
     """Classe que aplica o padrão de projeto 'Abstract Factory', para a criação dos navios no Jogo."""
 
-    #def __init__(self):
-    #    super(NavioFactory, self).__init__()
-
     @staticmethod
     def criarNavio(chaveNavio):
         """Factory Method para a construção dos navios.
