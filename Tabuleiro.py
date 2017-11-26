@@ -71,22 +71,27 @@ class Tabuleiro:
 		posy = 0
 		c = 0
 		count_letter = 0
-		print("\t",end="")
+		msgRetorno = "\t "
+		print("\t ",end="")
 
 		for i in range(0,TAM_PADRAO):
 			print(i+1,end=" ")
-
+			msgRetorno = msgRetorno + str(i+1) + " "
+            
 		print()
-
-		print("\t",end="")
+		msgRetorno = msgRetorno + "\n\t "
+		print("\t ",end="")
 
 		for i in range(0,TAM_PADRAO):
 			print("-",end=" ")
+			msgRetorno = msgRetorno + "- "
 
 		for i in range(0,TAM_PADRAO**2):
 			if c % TAM_PADRAO == 0:
 				print()
-				print("    ",LETRAS_TABULEIRO[count_letter],"|",end="")
+				msgRetorno = msgRetorno + "\n"
+				print("    ",LETRAS_TABULEIRO[count_letter],"| ",end="")
+				msgRetorno = msgRetorno + "    "+ " " + LETRAS_TABULEIRO[count_letter] + " " + "| "
 				count_letter += 1
 
 				if c != 0:
@@ -95,12 +100,16 @@ class Tabuleiro:
 				posy = 0
 
 			print(self.__tabMatriz[posx,posy], end=" ")
+			msgRetorno = msgRetorno + str(self.__tabMatriz[posx,posy]) + " "
 			c += 1
 			posy += 1
-
+        
 		print("\n")
 		print("Legenda:","\n","0 -> Disponível","\n","1 -> Atingido","\n", "2 -> Posição dos navios","\n","3 -> Navio atingido")
-
+		msgRetorno = msgRetorno + "\n\n"
+		msgRetorno = msgRetorno + "Legenda: " + "\n " + "0 -> Disponível " + "\n " + "1 -> Atingido " + "\n " + "2 -> Posição dos navios " + "\n " + "3 -> Navio atingido"
+		return msgRetorno
+                                          
 	def adicionarPosicaoJaEscolhida(self,pos):
 		"""Método que adiciona a posição já escolhida no tabuleiro para 'listaJaAtingidas'.
 			*Parâmetros:
