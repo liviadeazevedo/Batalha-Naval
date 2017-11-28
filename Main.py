@@ -30,13 +30,13 @@ while not fimJogo:
 	#------------------------------Parte 3: Inicio do jogo------------------------------
 	
 	#Definir aleatoriamente quem começa o jogo. Escolha de um número aleatório entre 0 e 9. Se num < 5, então jogador 1 inicia, caso contrário, jogador 2 inicia.
-	print("========================DEFININDO ALEATORIAMENTE QUEM INICIARÁ O JOGO!========================\n")
+	print("========================DEFININDO ALEATORIAMENTE QUEM INICIARA O JOGO!========================\n")
 	escolha = randint(0,9)
 	if escolha >= 5:
-		print("========================QUEM COMEÇA É O JOGADOR 1!========================\n")
+		print("========================QUEM COMECA EH O JOGADOR 1!========================\n")
 		comcarJogoJ1 = True
 	else:
-		print("========================QUEM COMEÇA É O JOGADOR 2!========================")
+		print("========================QUEM COMECA EH O JOGADOR 2!========================")
 
 	#Fluxo dos ataques dos jogadores.
 	if comcarJogoJ1:

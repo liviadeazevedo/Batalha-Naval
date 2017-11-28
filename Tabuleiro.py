@@ -105,9 +105,9 @@ class Tabuleiro:
 			posy += 1
         
 		print("\n")
-		print("Legenda:","\n","0 -> Disponível","\n","1 -> Atingido","\n", "2 -> Posição dos navios","\n","3 -> Navio atingido")
+		print("Legenda:","\n","0 -> Disponivel","\n","1 -> Atingido","\n", "2 -> Posicao dos navios","\n","3 -> Navio atingido")
 		msgRetorno = msgRetorno + "\n\n"
-		msgRetorno = msgRetorno + "Legenda: " + "\n " + "0 -> Disponível " + "\n " + "1 -> Atingido " + "\n " + "2 -> Posição dos navios " + "\n " + "3 -> Navio atingido"
+		msgRetorno = msgRetorno + "Legenda: " + "\n " + "0 -> Disponivel " + "\n " + "1 -> Atingido " + "\n " + "2 -> Posicao dos navios " + "\n " + "3 -> Navio atingido"
 		return msgRetorno
                                           
 	def adicionarPosicaoJaEscolhida(self,pos):

@@ -35,16 +35,16 @@ while not fimJogo:
 	#------------------------------Parte 3: Inicio do jogo------------------------------
 	
 	#Definir aleatoriamente quem começa o jogo. Escolha de um número aleatório entre 0 e 9. Se num < 5, então jogador 1 inicia, caso contrário, jogador 2 inicia.
-	msg = "\n========================DEFININDO ALEATORIAMENTE QUEM INICIARÁ O JOGO!========================\n\n\n"
+	msg = "\n========================DEFININDO ALEATORIAMENTE QUEM INICIARA O JOGO!========================\n\n\n"
 	conexao.enviarTodos(msg)
 	print(msg)
     
 	escolha = randint(0,9)
 	if escolha >= 5:
-		msg = "========================QUEM COMEÇA É O JOGADOR 1!========================\n\n\n\n"
+		msg = "========================QUEM COMECA EH O JOGADOR 1!========================\n\n\n\n"
 		comcarJogoJ1 = True
 	else:
-		msg = "========================QUEM COMEÇA É O JOGADOR 2!========================\n\n\n\n"
+		msg = "========================QUEM COMECA EH O JOGADOR 2!========================\n\n\n\n"
 
 	conexao.enviarTodos(msg)
 	print(msg)

@@ -52,8 +52,8 @@ class Jogo:
     		*Parâmetros:
     			-dict_aux: Dicionário auxiliar que contém todas as informações sobre cada tipo de navio. A quantidade de cada chave
     			é subtraída a cada inserção deste navio no tabuleiro, motivo este de dict_aux existir."""
-		print("Navios Disponíveis:\n")
-		msg = "Navios Disponíveis:\n\n"
+		print("Navios Disponiveis:\n")
+		msg = "Navios Disponiveis:\n\n"
 		for i in LISTA_CHAVES:
 			print(i + ")",Navio.NAVIOS_DISPONIVEIS[i][1] + "-->","Casas Ocupadas:",str(Navio.NAVIOS_DISPONIVEIS[i][2]) + ";","Quantidade:",dict_aux[i])
 			msg = msg + str(i) + ") " + str(Navio.NAVIOS_DISPONIVEIS[i][1]) + "--> " + "Casas Ocupadas: " + str(Navio.NAVIOS_DISPONIVEIS[i][2]) + "; " + "Quantidade: " + str(dict_aux[i]) + "\n"
@@ -114,7 +114,7 @@ class Jogo:
             
 			while not validezInput:
 				msg = "----------------------------------------------------------------------------------------------------" + "\n"
-				msg = msg + "Digite a abreviação do navio que queria posicionar no tabuleiro:\n"
+				msg = msg + "Digite a abreviacao do navio que queria posicionar no tabuleiro:\n"
 				msg = msg + "----------------------------------------------------------------------------------------------------\n"
 				abrevNavio = ""
 				if(comSocket):
@@ -137,7 +137,7 @@ class Jogo:
 
 			while not resultEsperado:
 				msg = "----------------------------------------------------------------------------------------------------\n"
-				msg = msg + "Digite a posição que deseja colocar seu " + Navio.NAVIOS_DISPONIVEIS[abrevNavio][1] + "(Casas: " + str(navioSel.numCasas) + ")" + ".\nOBS: Considere a ordem das posições da esq para dir(horizontal) e de cima para baixo(vertical)\nEXEMPLOS: A1-A5, B1-E1, F3-F5" +":\n----------------------------------------------------------------------------------------------------\n"
+				msg = msg + "Digite a posicao que deseja colocar seu " + Navio.NAVIOS_DISPONIVEIS[abrevNavio][1] + "(Casas: " + str(navioSel.numCasas) + ")" + ".\nOBS: Considere a ordem das posicoes da esq para dir(horizontal) e de cima para baixo(vertical)\nEXEMPLOS: A1-A5, B1-E1, F3-F5" +":\n----------------------------------------------------------------------------------------------------\n"
 				posNavio = ""
 				if(comSocket):
 					print(msg)
@@ -190,11 +190,11 @@ class Jogo:
 			resultEsperado = False
             
 			msg = "====================================================\n"
-			msg = msg + "NAVIO POSTO COM SUCESSO. SELECIONE O PRÓXIMO.\n\n TABULEIRO ATUAL:\n"
+			msg = msg + "NAVIO POSTO COM SUCESSO. SELECIONE O PROXIMO.\n\n TABULEIRO ATUAL:\n"
 			print(msg)
 			if comSocket:
 				self.enviar(conexao, j1Vez, msg, enviarTodos=True, ignorar=ignorar)
-				self.enviar(conexao, not j1Vez, "Seu adversário posicionou um navio...")
+				self.enviar(conexao, not j1Vez, "Seu adversario posicionou um navio...")
             
 
 			if j1Vez:
@@ -351,7 +351,7 @@ class Jogo:
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
 			msg = "----------------------------------------------------------------------------------------------------\n"
-			msg = msg + "Digite a posição de ataque ao seu oponente.\nEX: A1, B4, J10\n----------------------------------------------------------------------------------------------------"
+			msg = msg + "Digite a posicao de ataque ao seu oponente.\nEX: A1, B4, J10\n----------------------------------------------------------------------------------------------------"
 			posTiro = ""
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
@@ -371,7 +371,7 @@ class Jogo:
 				opSuccs,acertouNav,navAbatido = self.j1.atacarOponente(self.j2,posTiro)
 
 				if not opSuccs: #Posição já atacada
-					msg = "POSIÇÃO JÁ ESCOLHIDA. POR FAVOR, SELECIONE OUTRA\n"
+					msg = "POSICAO JÁ ESCOLHIDA. POR FAVOR, SELECIONE OUTRA\n"
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
 					print(msg)
@@ -382,7 +382,7 @@ class Jogo:
 					print(msg)
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
-						msg = "NAVIO ATINGINDO! posição: " + posTiro.upper() + "\n"
+						msg = "NAVIO ATINGINDO! posicao: " + posTiro.upper() + "\n"
 						self.enviar(conexao=conexao, j1Vez=False, msg=msg) #informando ao jogador 2 o ataque
 					continue
 
@@ -391,7 +391,7 @@ class Jogo:
 					print(msg)
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
-						msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper() + "\n"
+						msg = "NAVIO DESTRUÍDO! ultimo tiro recebido na posicao: " + posTiro.upper() + "\n"
 						self.enviar(conexao=conexao, j1Vez=False, msg=msg) #informando ao jogador 2 o ataque
 					opSuccs,jog1Venceu,jog2Venceu = self.fimJogo()
 					if opSuccs:
@@ -406,14 +406,14 @@ class Jogo:
 							#break
 					continue		
 			else:
-				msg = "POSIÇÃO INVÁLIDA. POR FAVOR, SELECIONE OUTRA\n"
+				msg = "POSICAO INVALIDA. POR FAVOR, SELECIONE OUTRA\n"
 				if comSocket:
 					self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
 				print(msg)
 				continue
 			
 			j1Fluxo = False
-			msg = "O JOGADOR 1 ACERTOU NA ÁGUA!...\n" + "\nJOGADA DO JOGADOR 1 EFETUADA!\n"
+			msg = "O JOGADOR 1 ACERTOU NA AGUA!...\n" + "\nJOGADA DO JOGADOR 1 EFETUADA!\n"
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True)
 			print(msg)
@@ -475,7 +475,7 @@ class Jogo:
 					self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
                     
 				msg = "----------------------------------------------------------------------------------------------------\n"
-				msg = msg + "Digite a posição de ataque ao seu oponente.\nEX: A1, B4, J10\n----------------------------------------------------------------------------------------------------"
+				msg = msg + "Digite a posicao de ataque ao seu oponente.\nEX: A1, B4, J10\n----------------------------------------------------------------------------------------------------"
 				posTiro = ""
 				if comSocket:
 					self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
@@ -495,7 +495,7 @@ class Jogo:
 					opSuccs,acertouNav,navAbatido = self.j1.atacarOponente(self.j1,posTiro)
 
 					if not opSuccs: #Posição já atacada
-						msg = "POSIÇÃO JÁ ESCOLHIDA. POR FAVOR, SELECIONE OUTRA\n"
+						msg = "POSICAO JA ESCOLHIDA. POR FAVOR, SELECIONE OUTRA\n"
 						if comSocket:
 							self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
 						print(msg)
@@ -506,16 +506,16 @@ class Jogo:
 						print(msg)
 						if comSocket:
 							self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
-							msg = "NAVIO ATINGINDO! posição: " + posTiro.upper() + "\n"
+							msg = "NAVIO ATINGINDO! posicao: " + posTiro.upper() + "\n"
 							self.enviar(conexao=conexao, j1Vez=True, msg=msg) #informando ao jogador 1 o ataque
 						continue
 
 					if opSuccs and acertouNav and navAbatido:
-						msg = "NAVIO DESTRUÍDO! POR FAVOR, JOGUE NOVAMENTE!"
+						msg = "NAVIO DESTRUIDO! POR FAVOR, JOGUE NOVAMENTE!"
 						print(msg)
 						if comSocket:
 							self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
-							msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper() + "\n"
+							msg = "NAVIO DESTRUIDO! ultimo tiro recebido na posicao: " + posTiro.upper() + "\n"
 							self.enviar(conexao=conexao, j1Vez=True, msg=msg) #informando ao jogador 1 o ataque
                             
 						opSuccs,jog1Venceu,jog2Venceu = self.fimJogo()
@@ -531,7 +531,7 @@ class Jogo:
 
 						continue	
 				else:
-					msg = "POSIÇÃO INVÁLIDA. POR FAVOR, SELECIONE OUTRA\n"
+					msg = "POSIÇÃO INVALIDA. POR FAVOR, SELECIONE OUTRA\n"
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
 					print(msg)
@@ -539,7 +539,7 @@ class Jogo:
 
 				j2Fluxo = False
 
-			msg = "O JOGADOR 2 ACERTOU NA ÁGUA!...\n" + "\nJOGADA DO JOGADOR 2 EFETUADA!\n"
+			msg = "O JOGADOR 2 ACERTOU NA AGUA!...\n" + "\nJOGADA DO JOGADOR 2 EFETUADA!\n"
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True)
 			print(msg)
@@ -650,10 +650,10 @@ class Jogo:
 			a += 1
 
 		print("\n")
-		print("Legenda:","\n",str(NUM_VAZIO_TABULEIRO)," -> Disponível","\n",str(NUM_TIRO_TABULEIRO)," -> Atingido","\n",str(NUM_NAVIO_TABULEIRO)," -> Posição dos navios","\n",NUM_NAVIO_TIRO_TABULEIRO," -> Navio atingido\n")
+		print("Legenda:","\n",str(NUM_VAZIO_TABULEIRO)," -> Disponivel","\n",str(NUM_TIRO_TABULEIRO)," -> Atingido","\n",str(NUM_NAVIO_TABULEIRO)," -> Posicao dos navios","\n",NUM_NAVIO_TIRO_TABULEIRO," -> Navio atingido\n")
 		print("Quantidade de Navios Jogador 1: ", str(len(self.__j1.navios)), "\nQuantidade de Navios Jogador 2: ",str(len(self.__j2.navios)))
 		msg = msg + "\n\n"
-		msg = msg + "Legenda: " + "\n " + str(NUM_VAZIO_TABULEIRO) + "  -> Disponível " + "\n " + str(NUM_TIRO_TABULEIRO) + "  -> Atingido "+ "\n " + str(NUM_NAVIO_TABULEIRO) + "  -> Posição dos navios " + "\n " + str(NUM_NAVIO_TIRO_TABULEIRO) + "  -> Navio atingido\n\n"
+		msg = msg + "Legenda: " + "\n " + str(NUM_VAZIO_TABULEIRO) + "  -> Disponivel " + "\n " + str(NUM_TIRO_TABULEIRO) + "  -> Atingido "+ "\n " + str(NUM_NAVIO_TABULEIRO) + "  -> Posicao dos navios " + "\n " + str(NUM_NAVIO_TIRO_TABULEIRO) + "  -> Navio atingido\n\n"
 		msg = msg + "Quantidade de Navios Jogador 1:  " + str(len(self.__j1.navios)) + " \nQuantidade de Navios Jogador 2:  " + str(len(self.__j2.navios))
 		return msg
 
