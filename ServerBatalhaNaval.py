@@ -2,6 +2,8 @@ from Jogo import *
 from ConexaoTCPserver import *
     
 fimJogo = False
+jogadorMaquina = False
+comcarJogoJ1 = False
 
 #Inicializa a partida.
 partida = Jogo()
@@ -33,22 +35,23 @@ while not fimJogo:
 	#------------------------------Parte 3: Inicio do jogo------------------------------
 	
 	#Definir aleatoriamente quem começa o jogo. Escolha de um número aleatório entre 0 e 9. Se num < 5, então jogador 1 inicia, caso contrário, jogador 2 inicia.
-	msg = "\n========================DEFININDO ALEATORIAMENTE QUEM INICIARÁ O JOGO!========================\n"
+	msg = "\n========================DEFININDO ALEATORIAMENTE QUEM INICIARÁ O JOGO!========================\n\n\n"
 	conexao.enviarTodos(msg)
 	print(msg)
     
 	escolha = randint(0,9)
 	if escolha >= 5:
-		msg = "\n========================QUEM COMEÇA É O JOGADOR 1!========================\n"
+		msg = "========================QUEM COMEÇA É O JOGADOR 1!========================\n\n\n\n"
 		comcarJogoJ1 = True
 	else:
-		msg = "\n========================QUEM COMEÇA É O JOGADOR 2!========================\n"
+		msg = "========================QUEM COMEÇA É O JOGADOR 2!========================\n\n\n\n"
 
 	conexao.enviarTodos(msg)
 	print(msg)
 
 	#Fluxo dos ataques dos jogadores.
 	if comcarJogoJ1:
+        
 		while True:	
 			fimJogo = partida.jogadaJogador1(comSocket=True,conexao=conexao) #Jogador 1 faz a jogada.
 
@@ -56,13 +59,13 @@ while not fimJogo:
 				break
 
             #will: a princípio o server nunca será um jogador ... o jogo só começa quando houver 2 jogadores
-			fimJogo = partida.jogadaJogador2(False,comSocket=True,conexao=conexao) #Jogador 2 faz a jogada.
+			fimJogo = partida.jogadaJogador2(jogadorMaquina,comSocket=True,conexao=conexao) #Jogador 2 faz a jogada.
 
 			if fimJogo: #Se o jogo acabou com a jogada do jogador 2, saia do fluxo e declare jogador 2 vencedor.
 				break
 	else: #Caso jogador 2 comece a partida. Mesma lógica do bloca acima, apenas com a inversão da chamada dos métodos.
 		while True:	
-			fimJogo = partida.jogadaJogador2(False,comSocket=True,conexao=conexao)
+			fimJogo = partida.jogadaJogador2(jogadorMaquina,comSocket=True,conexao=conexao)
 
 			if fimJogo:
 				break
@@ -71,6 +74,7 @@ while not fimJogo:
 
 			if fimJogo:
 				break
+                
 
 
 conexao.fecharConexao()

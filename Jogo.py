@@ -342,7 +342,7 @@ class Jogo:
 		if comSocket:
 			ignorar = (conexao.idP2,)
 		while j1Fluxo:
-			msg = "===================VEZ DO JOGADOR 1:==============================\n"
+			msg = "\n===================VEZ DO JOGADOR 1:==============================\n"
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True)
 			print(msg)
@@ -382,7 +382,7 @@ class Jogo:
 					print(msg)
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
-						msg = "NAVIO ATINGINDO! posição: " + posTiro.upper()
+						msg = "NAVIO ATINGINDO! posição: " + posTiro.upper() + "\n"
 						self.enviar(conexao=conexao, j1Vez=False, msg=msg) #informando ao jogador 2 o ataque
 					continue
 
@@ -391,7 +391,7 @@ class Jogo:
 					print(msg)
 					if comSocket:
 						self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True, ignorar=ignorar)
-						msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper()
+						msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper() + "\n"
 						self.enviar(conexao=conexao, j1Vez=False, msg=msg) #informando ao jogador 2 o ataque
 					opSuccs,jog1Venceu,jog2Venceu = self.fimJogo()
 					if opSuccs:
@@ -413,7 +413,7 @@ class Jogo:
 				continue
 			
 			j1Fluxo = False
-			msg = "O JOGADOR 1 ACERTOU NA ÁGUA!...\n\n" + "\nJOGADA DO JOGADOR 1 EFETUADA!\n"
+			msg = "O JOGADOR 1 ACERTOU NA ÁGUA!...\n" + "\nJOGADA DO JOGADOR 1 EFETUADA!\n"
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=True, msg=msg, enviarTodos=True)
 			print(msg)
@@ -466,7 +466,7 @@ class Jogo:
 				ignorar = (conexao.idP1,)
 			while j2Fluxo:
 				#Vez jogador 2
-				msg = "===================VEZ DO JOGADOR 2:==============================\n"
+				msg = "\n===================VEZ DO JOGADOR 2:==============================\n"
 				if comSocket:
 					self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True)
 				print(msg)
@@ -506,7 +506,7 @@ class Jogo:
 						print(msg)
 						if comSocket:
 							self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
-							msg = "NAVIO ATINGINDO! posição: " + posTiro.upper()
+							msg = "NAVIO ATINGINDO! posição: " + posTiro.upper() + "\n"
 							self.enviar(conexao=conexao, j1Vez=True, msg=msg) #informando ao jogador 1 o ataque
 						continue
 
@@ -515,7 +515,7 @@ class Jogo:
 						print(msg)
 						if comSocket:
 							self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True, ignorar=ignorar)
-							msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper()
+							msg = "NAVIO DESTRUÍDO! último tiro recebido na posição: " + posTiro.upper() + "\n"
 							self.enviar(conexao=conexao, j1Vez=True, msg=msg) #informando ao jogador 1 o ataque
                             
 						opSuccs,jog1Venceu,jog2Venceu = self.fimJogo()
@@ -539,7 +539,7 @@ class Jogo:
 
 				j2Fluxo = False
 
-			msg = "O JOGADOR 2 ACERTOU NA ÁGUA!...\n\n" + "\nJOGADA DO JOGADOR 2 EFETUADA!\n"
+			msg = "O JOGADOR 2 ACERTOU NA ÁGUA!...\n" + "\nJOGADA DO JOGADOR 2 EFETUADA!\n"
 			if comSocket:
 				self.enviar(conexao=conexao, j1Vez=False, msg=msg, enviarTodos=True)
 			print(msg)

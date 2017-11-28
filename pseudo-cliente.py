@@ -1,4 +1,4 @@
-# PLAYER 1
+# PLAYER 2
 print(" PLAYER 1 ")
 
 host="127.0.0.1"            # Set the server address to variable host
@@ -11,15 +11,23 @@ s=socket(AF_INET, SOCK_STREAM)      # Creates a socket
 msg = " "
 s.connect((host,port))          # Connect to server address
 
-while(msg != "out"):
-    if msg.strip() != "input":
-        data=s.recv(1024)
-        msg = "".join(map(chr, data))
-    if(msg.strip() == "input"):
+
+while(True):
+    data=s.recv(1024)
+    msg = "".join(map(chr, data))
+    if(msg.endswith("input")):
         msgEnvio = input()
         s.send(bytes(msgEnvio, 'utf-8'))
-        msg = ""
+        if len(msg) > len("input"):
+            msg = msg.rsplit("input", maxsplit=1)[0]
+            print(msg)
     else:
+        if msg.endswith("out") :
+            if len("out") != len(msg):
+                nsg = msg.rsplit("out", maxsplit=1)[0]
+                print(msg)
+            break
         print(msg)
+    
 print("out")
 s.close()

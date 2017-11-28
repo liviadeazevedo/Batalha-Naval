@@ -79,8 +79,8 @@ class Tabuleiro:
 			msgRetorno = msgRetorno + str(i+1) + " "
             
 		print()
-		msgRetorno = msgRetorno + "\n\t "
-		print("\t ",end="")
+		msgRetorno = msgRetorno + "\n" + "\t" + " "
+		print("\t", " ",end="")
 
 		for i in range(0,TAM_PADRAO):
 			print("-",end=" ")
