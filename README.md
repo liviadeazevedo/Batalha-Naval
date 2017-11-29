@@ -15,10 +15,12 @@ Todas as instruções para o prosseguimento do jogo estão presentes durante a e
 ### MODO DE EXECUTAR O JOGO NO SERVIDOR
 
 Abra 4 janelas do Terminal e:
-1. Em uma das janelas, execute uma instância de : ServerBatalhaNaval.py;
+1. Em uma das janelas, execute uma instância de : ServerBatalhaNaval.py.
+
     ```python3 ServerBatalhaNaval.py```
 
-2. Nas 3 janelas restantes execute, em cada uma delas, uma instância de: pseudo-cliente.py, sendo a ordem **Player1 (P1)**, **Player2 (P2)** e **Observador**;
+2. Nas 3 janelas restantes execute, em cada uma delas, uma instância de: pseudo-cliente.py, sendo a ordem **Player1 (P1)**, **Player2 (P2)** e **Observador**.
+
     ```python3 pseudo-cliente.py```
 
 3. Jogue o jogo normalmente alternando entre **P1** e **P2** para enviar as informações de acordo com o informado.
