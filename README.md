@@ -2,6 +2,8 @@
 Repositório que contém uma implementação do jogo "Batalha Naval" em Python 3.
 Recomenda-se executar a aplicação via Terminal Linux.
 
+
+### MODO DE EXECUTAR O JOGO EM JANELA ÚNICA
 Para executar o jogo, basta abrir pelo Terminal (no diretório onde está os arquivos do jogo) e digitar:
 
     python Main.py
