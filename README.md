@@ -23,6 +23,6 @@ Abra 4 janelas do Terminal e:
 
 2. Nas 3 janelas restantes execute, em cada uma delas, uma instância de pseudo-cliente.py, sendo a ordem **Player1 (P1)**, **Player2 (P2)** e **Observador**.
 
-        python3 pseudo-cliente.py
+        python3 ClientBatalhaNaval.py
 
 3. Jogue o jogo normalmente alternando entre **P1** e **P2** para enviar as informações de acordo com o informado.
