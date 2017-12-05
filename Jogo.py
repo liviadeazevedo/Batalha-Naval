@@ -80,6 +80,8 @@ class Jogo:
 
     		*Retorno: (Navio,boolean) -> 1) Objeto do tipo Navio, se a chave é válida; 2) Operação sucedida ou não.""" 
 
+		print("Oi",chaveNavio,"oi2", end="")
+
 		if not chaveNavio in Navio.NAVIOS_DISPONIVEIS.keys() or dict_aux[chaveNavio] == 0:
 			return (None,False)
 
@@ -671,7 +673,9 @@ class Jogo:
 				else:
 					return False
 			else:
-				return False		
+				return False
+		else:
+			return False		
 
 
 	def verificarValidezInputPosicaoNavio(self,pos): #pos -> string
