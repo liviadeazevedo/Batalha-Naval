@@ -17,23 +17,23 @@ class TCPconnetion:
         self.enderecosClientes = [] # tupla (host, port) dos clientes
 
         self.serverConnectionSocket.listen(1)
-        print("Esperando jogador 1...")
+        print("Esperando Jogador 1...")
 
         self.__registrarConexao()
         
-        self.enviarP1("esperando jogador 2...")
-        print("Esperando jogador 2...")
+        self.enviarP1("Esperando Jogador 2...")
+        print("Esperando Jogador 2...")
         
         self.__registrarConexao()
 
         # indica para os jogadores quem é o seu adversário (localHost:porta)
-        self.enviarP1("conectado ao jogador 2 (addr: "+ self.enderecosClientes[self.idP2][0] + ":" + str(self.enderecosClientes[self.idP2][1])  +") \n\n Esperando espectador (por 20s)...\n")
+        self.enviarP1("Conectado ao Jogador 2 (addr: "+ self.enderecosClientes[self.idP2][0] + ":" + str(self.enderecosClientes[self.idP2][1])  +") \n\n Esperando Espectador (por 20s)...\n")
         
-        self.enviarP2("conectado ao cliente 1 (addr: " + self.enderecosClientes[self.idP1][0] + ":" + str(self.enderecosClientes[self.idP1][1])  +") \n\n Esperando espectador (por 20s)...\n")
+        self.enviarP2("Conectado ao Jogador 1 (addr: " + self.enderecosClientes[self.idP1][0] + ":" + str(self.enderecosClientes[self.idP1][1])  +") \n\n Esperando Espectador (por 20s)...\n")
 
         # passa a esperar conexão só por 20s
         self.serverConnectionSocket.settimeout(20)
-        print("Esperando espectador (por 20s)...\n")
+        print("Esperando Espectador (por 20s)...\n")
         
         self.__registrarConexao()
         self.serverConnectionSocket.setblocking(False)
@@ -44,8 +44,8 @@ class TCPconnetion:
 
             self.socketsClientes.append(cSocket)
             self.enderecosClientes.append(cAddr)
-            if len(self.socketsClientes) >= 2:
-                self.__enviarMensagem("Conectado como espectador...\n", cSocket)
+            if len(self.socketsClientes) > 2: #MEXI AQUI
+                self.__enviarMensagem("Conectado como Espectador...\n", cSocket)
         except OSError:
             if len(self.socketsClientes) >= 2: 
                 print("Sem mais observadores por enquanto.\n")   

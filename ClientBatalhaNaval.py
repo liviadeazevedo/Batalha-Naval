@@ -1,5 +1,5 @@
 # PLAYER 2
-print(" PLAYER 1 ")
+#print(" PLAYER 1 ")
 
 host="127.0.0.1"            # Set the server address to variable host
 
