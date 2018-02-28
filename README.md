@@ -9,4 +9,4 @@ ou, caso necessário especificar a versão do Python a ser usada:
 
     python3 Main.py
     
-Todas as instruções para o prosseguimento do jogo esto presentes durante a execução.
+Todas as instruções para o prosseguimento do jogo estão presentes durante a execução.
